@@ -6,5 +6,9 @@ edition = "2021"
 license = "MIT"
 homepage = "https://github.com/wiiznokes/lcs_rs/"
 repository = "https://github.com/wiiznokes/lcs_rs.git"
+keywords = ["lcs", "dyn programming", "diff"]
+categories = ["algorithms"]
+exclude = ["/.*", "justfile", "LICENCE", "tests*", "java*"]
+description = "Implementation of the longest common subsequence"
 
 [dependencies]

@@ -1,3 +1,5 @@
+//! This crate calculates [the longest common subsequence](https://en.wikipedia.org/wiki/Longest_common_subsequence)
+
 use std::{cmp::max, fmt::Debug};
 
 #[cfg(test)]
@@ -32,12 +34,26 @@ fn fill_matrice(s1: &str, s2: &str) -> Vec<Vec<usize>> {
     mat
 }
 
+/// Return the lenght of the longest common subsequence between s1 and s2
+/// ```
+/// let s1 = "GCACAGCGGT";
+/// let s2 = "TTGTGAAATC";
+///
+/// assert!(lcs_rs::lcs_len(s1, s2) == 4);
+/// ```
 #[must_use]
 pub fn lcs_len(s1: &str, s2: &str) -> usize {
     let mat = fill_matrice(s1, s2);
     mat[s1.len()][s2.len()]
 }
 
+/// Return the longest common subsequence between s1 and s2
+/// ```
+/// let s1 = "GCACAGCGGT";
+/// let s2 = "TTGTGAAATC";
+///
+/// assert!(lcs_rs::lcs(s1, s2) == "GAAT");
+/// ```
 #[must_use]
 pub fn lcs(s1: &str, s2: &str) -> String {
     let mat = fill_matrice(s1, s2);
