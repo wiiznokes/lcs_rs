@@ -5,16 +5,19 @@ mod test_format;
 
 #[inline]
 fn fill_matrice(s1: &str, s2: &str) -> Vec<Vec<usize>> {
-    let mut mat: Vec<Vec<usize>> = vec![vec![0; s1.len() + 1]; s2.len() + 1];
+    let size_s1 = s1.chars().count() + 1;
+    let size_s2 = s2.chars().count() + 1;
+
+    let mut mat: Vec<Vec<usize>> = vec![vec![0; size_s2]; size_s1];
 
     let mut s1_iter = s1.chars();
     let mut u = None;
 
-    for i in 0..=s1.len() {
+    for i in 0..size_s1 {
         let mut s2_iter = s2.chars();
         let mut v = None;
 
-        for j in 0..=s2.len() {
+        for j in 0..size_s2 {
             if i == 0 || j == 0 {
                 mat[i][j] = 0;
             } else if u.unwrap() == v.unwrap() {

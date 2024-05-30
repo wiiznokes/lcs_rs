@@ -1,6 +1,10 @@
 [package]
 name = "lcs_rs"
 version = "0.1.0"
+authors = ["wiiznokes <wiiznokes2@gmail.com>"]
 edition = "2021"
+license = "MIT"
+homepage = "https://github.com/wiiznokes/lcs_rs/"
+repository = "https://github.com/wiiznokes/lcs_rs.git"
 
 [dependencies]
