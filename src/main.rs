@@ -5,9 +5,11 @@ mod test_format;
 use test_format::TestFormat;
 
 fn main() {
-    env::args().next();
+    let mut args = env::args();
 
-    let path = env::args().next().expect("usage: path");
+    args.next();
+
+    let path = args.next().expect("usage: path");
 
     let t = TestFormat::parse(path);
 
