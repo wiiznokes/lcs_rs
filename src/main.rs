@@ -20,5 +20,5 @@ fn main() {
     let elapsed = now.elapsed();
     println!("Time: {:?}", elapsed);
 
-    assert!(r == t.result_size);
+    assert!(r == t.result);
 }

@@ -3,7 +3,8 @@ use std::{cmp::max, fmt::Debug};
 #[cfg(test)]
 mod test_format;
 
-pub fn lcs(s1: &str, s2: &str) -> usize {
+#[inline]
+fn fill_matrice(s1: &str, s2: &str) -> Vec<Vec<i32>> {
     let mut mat: Vec<Vec<i32>> = vec![vec![0; s1.len() + 1]; s2.len() + 1];
 
     let mut s1_iter = s1.chars();
@@ -25,6 +26,12 @@ pub fn lcs(s1: &str, s2: &str) -> usize {
         }
         u = s1_iter.next();
     }
+    mat
+}
+
+#[must_use]
+pub fn lcs_len(s1: &str, s2: &str) -> usize {
+    let mat = fill_matrice(s1, s2);
 
     let mut res = 0;
 
@@ -37,6 +44,37 @@ pub fn lcs(s1: &str, s2: &str) -> usize {
     while i > 0 && j > 0 {
         if s1_iter.peek().unwrap() == s2_iter.peek().unwrap() {
             res += 1;
+            s1_iter.next();
+            s2_iter.next();
+            i -= 1;
+            j -= 1;
+        } else if mat[i - 1][j] > mat[i][j - 1] {
+            s1_iter.next();
+            i -= 1;
+        } else {
+            s2_iter.next();
+            j -= 1;
+        }
+    }
+
+    res
+}
+
+#[must_use]
+pub fn lcs(s1: &str, s2: &str) -> String {
+    let mat = fill_matrice(s1, s2);
+
+    let mut res = String::new();
+
+    let mut s1_iter = s1.chars().rev().peekable();
+    let mut s2_iter = s2.chars().rev().peekable();
+
+    let mut i = s1.len();
+    let mut j = s2.len();
+
+    while i > 0 && j > 0 {
+        if s1_iter.peek().unwrap() == s2_iter.peek().unwrap() {
+            res.insert(0, *s1_iter.peek().unwrap());
             s1_iter.next();
             s2_iter.next();
             i -= 1;
@@ -82,7 +120,7 @@ mod test {
             let test = TestFormat::parse(path);
 
             let res = lcs(&test.s1, &test.s2);
-            assert!(test.result_size == res);
+            assert!(test.result == res);
         }
     }
 
@@ -91,6 +129,6 @@ mod test {
         let test = TestFormat::parse("tests/adn-10-10.test");
 
         let res = lcs(&test.s1, &test.s2);
-        assert!(test.result_size == res);
+        assert!(test.result == res);
     }
 }

@@ -6,7 +6,7 @@ pub struct TestFormat {
     pub s1: String,
     pub s2: String,
     pub result_size: usize,
-    pub _result: String,
+    pub result: String,
 }
 
 fn decode_utf8(buf: Vec<u8>) -> String {
@@ -40,7 +40,7 @@ impl TestFormat {
             s1: s1.to_string(),
             s2: s2.to_string(),
             result_size,
-            _result: result.to_string(),
+            result: result.to_string(),
         }
     }
 }
