@@ -30,22 +30,49 @@ pub fn lcs(s1: &str, s2: &str) -> usize {
 
     print_mat(&mat);
 
-    while let (Some((i, u)), Some((j, v))) = (s1_iter.peek(), s2_iter.peek()) {
-        if u == v {
+    // while let (Some((i, u)), Some((j, v))) = (s1_iter.peek(), s2_iter.peek()) {
+    //     if u == v {
+    //         res += 1;
+    //         s1_iter.next();
+    //         s2_iter.next();
+    //     } else if mat[i - 1][*j] > mat[*i][j - 1] {
+    //         s1_iter.next();
+    //     } else {
+    //         s2_iter.next();
+    //     }
+    // }
+
+    // println!("res = {res}");
+
+    let mut s1_iter = s1.chars().rev().peekable();
+    let mut s2_iter = s2.chars().rev().peekable();
+
+    let mut i = s1.len();
+    let mut j = s2.len();
+
+
+    // s1_iter.next();
+    // s2_iter.next();
+
+    while i > 0 && j > 0 {
+
+        let a = s1_iter.peek().unwrap();
+        let b = s2_iter.peek().unwrap();
+
+        if s1_iter.peek().unwrap() == s2_iter.peek().unwrap() {
             res += 1;
             s1_iter.next();
             s2_iter.next();
-        } else if mat[i - 1][*j] > mat[*i][j - 1] {
+            i -= 1;
+            j -= 1;
+        } else if mat[i - 1][j] > mat[i][j - 1] {
             s1_iter.next();
+            i -= 1;
         } else {
             s2_iter.next();
+            j -= 1;
         }
     }
-
-    println!("res = {res}");
-
-    let mut s1_iter = s1.chars().rev();
-    let mut s2_iter = s1.chars().rev();
 
     res
 }
