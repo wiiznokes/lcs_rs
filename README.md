@@ -3,7 +3,6 @@
 [![crates.io](https://img.shields.io/crates/v/lcs_rs?style=flat-square&logo=rust)](https://crates.io/crates/lcs_rs)
 [![docs.rs](https://img.shields.io/badge/docs.rs-lcs_rs-blue?style=flat-square&logo=docs.rs)](https://docs.rs/lcs_rs)
 [![license](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](#license)
-![ci_status](https://github.com/wiiznokes/lcs_rs/actions/workflows/test.yml/badge.svg)
 
 [Longest common subsequence](https://en.wikipedia.org/wiki/Longest_common_subsequence) implementation in Rust (and Java).
 
