@@ -1,8 +1,10 @@
 # lcs_rs
 
-[Longest common subsequence](https://en.wikipedia.org/wiki/Longest_common_subsequence) implementation in rust (and Java).
+[Longest common subsequence](https://en.wikipedia.org/wiki/Longest_common_subsequence) implementation in Rust (and Java).
 
-## bench for the 10000-10000 test (the 15000 one doesn't work):
+## bench for the 10000-10000 test
+
+_Todo: make benchmarks in a loop_
 
 ### Rust
 
@@ -20,10 +22,10 @@ Time: 668.713163 millis
 
 This result varies ~ += 50 ms on my pc.
 
-None of both implementations have been hardly optimized, but the algorithm used is quit fast.
+None of both implementations have been hardly optimized, but the algorithm used is quite fast.
 
 ## Attempt to explain why rust is slower (please don't quote me on this)
 
-Maybe the jvm allocate some space directly when launching the program, which make the allocation of the matrice faster.
+Maybe the JVM allocates some space directly when launching the program, which makes the allocation of the matrix faster.
 
-Rust need to iterate over all chars to get the number of chars in the string, because an UTF-8 can have different size. I don't think Java does this.
+Rust needs to iterate over all chars to get the number of chars in the string, because an UTF-8 can have different sizes. I don't think Java does this.
