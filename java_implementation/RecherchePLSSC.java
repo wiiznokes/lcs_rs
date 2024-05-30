@@ -133,7 +133,7 @@ public class RecherchePLSSC {
             }
         }
 
-        printTab(tab);
+        // printTab(tab);
 
         // Construct the result
         StringBuilder result = new StringBuilder();
@@ -141,9 +141,6 @@ public class RecherchePLSSC {
         int j = sizeS2 - 1;
 
         while (i > 0 && j > 0) {
-
-            char a = S1.charAt(i - 1);
-            char b = S2.charAt(j - 1);
             
             if (S1.charAt(i - 1) == S2.charAt(j - 1)) {
                 result.insert(0, S1.charAt(i - 1));
@@ -198,9 +195,9 @@ public class RecherchePLSSC {
         String currentResult = PLSSC_PD(S1, S2);
         long endTime = System.nanoTime();
 
-        String time = String.valueOf((endTime - startTime) / 1.0E9);
+        String time = String.valueOf((endTime - startTime) / 1.0E6);
 
-        System.out.println("Temps pour version dynamique: " + time + " secondes");
+        System.out.println("Time: " + time + " millis");
         
         if (!currentResult.equals(result)) {
             System.out.println("Error: " + currentResult + " Attendu: " + result);

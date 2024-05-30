@@ -13,9 +13,12 @@ fn main() {
 
     let t = TestFormat::parse(path);
 
+    let now = std::time::Instant::now();
+
     let r = lcs_rs::lcs(&t.s1, &t.s2);
 
-    assert!(r == t.result_size);
+    let elapsed = now.elapsed();
+    println!("Time: {:?}", elapsed);
 
-    println!("all good!");
+    assert!(r == t.result_size);
 }

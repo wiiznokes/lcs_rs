@@ -1,7 +1,11 @@
 set windows-powershell := true
 
+
+default:
+	cargo run --release -- tests/adn-10000-10000.test
+
 test:
-	cargo test --workspace --all-features
+	cargo test --workspace --all-features --release
 
 fix:
 	cargo clippy --workspace --all-features --fix --allow-dirty --allow-staged
@@ -22,3 +26,8 @@ git-cache:
 
 expand:
 	cargo expand
+
+
+java:
+	javac java_implementation/RecherchePLSSC.java
+	java -cp java_implementation RecherchePLSSC tests/adn-10000-10000.test
