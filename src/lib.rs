@@ -1,7 +1,6 @@
 use std::{cmp::max, fmt::Debug};
 
 pub fn lcs(s1: &str, s2: &str) -> usize {
-
     let mut mat: Vec<Vec<i32>> = vec![vec![0; s1.len() + 1]; s2.len() + 1];
 
     let mut s1_iter = s1.chars();
@@ -24,17 +23,14 @@ pub fn lcs(s1: &str, s2: &str) -> usize {
         u = s1_iter.next();
     }
 
-
     let mut s1_iter = s1.char_indices().rev().peekable();
-    let mut s2_iter = s1.char_indices().rev().peekable();
+    let mut s2_iter = s2.char_indices().rev().peekable();
 
     let mut res = 0;
 
     print_mat(&mat);
-    
 
     while let (Some((i, u)), Some((j, v))) = (s1_iter.peek(), s2_iter.peek()) {
-
         if u == v {
             res += 1;
             s1_iter.next();
@@ -47,9 +43,12 @@ pub fn lcs(s1: &str, s2: &str) -> usize {
     }
 
     println!("res = {res}");
+
+    let mut s1_iter = s1.chars().rev();
+    let mut s2_iter = s1.chars().rev();
+
     res
 }
-
 
 fn print_mat<T: Debug>(mat: &Vec<Vec<T>>) {
     for j in 0..mat[0].len() {
@@ -71,4 +70,15 @@ mod test {
         assert!(lcs("GCACAGCGGT", "TTGTGAAATC") == 4);
     }
 
+    #[test]
+    fn a() {
+        let xs = [1, 2, 3];
+
+        let mut iter = xs.iter().rev().peekable();
+
+        // `peek_mut()` lets us see into the future
+        assert_eq!(iter.peek_mut(), Some(&mut &3));
+        assert_eq!(iter.peek_mut(), Some(&mut &3));
+        assert_eq!(iter.next(), Some(&3));
+    }
 }
